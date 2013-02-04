@@ -14,8 +14,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //BaasClient Init
-    [Baasio setApplicationInfo:@"cetauri" applicationName:@"sandbox"];
+    //Insert you 'baas.io ID'
+    [Baasio setApplicationInfo:@{baas.io ID} applicationName:@"sandbox"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
