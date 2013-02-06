@@ -15,7 +15,7 @@
 @property(strong) NSString *username;
 
 /**
- user
+ user 생성 
  */
 + (BaasioUser *)user;
 
@@ -24,14 +24,30 @@
  */
 + (BaasioUser *)currentUser;
 
+
 /**
- signOut
+ user update
+ @param error error
+ */
+- (BaasioUser *)update:(NSError **)error;
+
+/**
+ user update asynchronously
+ @param successBlock successBlock
+ @param failureBlock failureBlock
+ */
+- (BaasioRequest*)updateInBackground:(void (^)(BaasioUser *group))successBlock
+                        failureBlock:(void (^)(NSError *error))failureBlock;
+
+
+/**
+ 로그아웃
  */
 + (void)signOut;
 
 
 /**
- signIn
+ 로그인
 
  @param username username
  @param password password
@@ -42,11 +58,11 @@
          error:(NSError**)error;
 
 /**
- sign asynchronously
+ 로그인 asynchronously
 
  @param username username
  @param password password
- @param failureBlock failureBlock
+ @param successBlock successBlock
  @param failureBlock failureBlock
  */
 + (BaasioRequest*)signInBackground:(NSString *)username
@@ -55,7 +71,7 @@
                       failureBlock:(void (^)(NSError *error))failureBlock;
 
 /**
- signUp
+ 회원가입
 
  @param username username
  @param password password
@@ -70,7 +86,7 @@
          error:(NSError**)error;
 
 /**
- signUp asynchronously
+ 회원가입 asynchronously
 
  @param username username
  @param password password
@@ -87,14 +103,14 @@
                         failureBlock:(void (^)(NSError *error))failureBlock;
 
 /**
- unsubscribe
+ 탈퇴
 
  @param error error
  */
 - (void)unsubscribe:(NSError**)error;
 
 /**
- unsubscribe asynchronously
+ 탈퇴 asynchronously
 
  @param successBlock successBlock
  @param failureBlock failureBlock
@@ -104,7 +120,7 @@
 
 
 /**
- signUp via Facebook
+ Facebook 통한 회원가입
 
  @param accessToken accessToken
  @param error error
@@ -113,18 +129,18 @@
                     error:(NSError**)error;
 
 /**
- signUp via Facebook asynchronously
+ Facebook 통한 회원가입 asynchronously
 
  @param accessToken accessToken
  @param successBlock successBlock
  @param failureBlock failureBlock
  */
 + (BaasioRequest*)signUpViaFacebookInBackground:(NSString *)accessToken
-                                          error:(void (^)(void))successBlock
+                                   successBlock:(void (^)(void))successBlock
                                    failureBlock:(void (^)(NSError *error))failureBlock;
 
 /**
- signIn via Facebook
+ Facebook 통한 로그인
 
  @param accessToken accessToken
  @param error error
@@ -133,14 +149,86 @@
                     error:(NSError**)error;
 
 /**
- signIn via Facebook asynchronously
+ Facebook 통한 로그인 asynchronously
 
  @param accessToken accessToken
  @param successBlock successBlock
  @param failureBlock failureBlock
  */
 + (BaasioRequest*)signInViaFacebookInBackground:(NSString *)accessToken
-                                          error:(void (^)(void))successBlock
+                                   successBlock:(void (^)(void))successBlock
                                    failureBlock:(void (^)(NSError *error))failureBlock;
 
+
+#pragma mark - for super document
+/**
+ user set
+ @param entity entity
+ */
+-(void)set:(NSDictionary *)entity;
+
+/**
+ user connect
+ @param entity entity
+ @param relationship relationship
+ @param error error
+ */
+- (void) connect:(BaasioEntity *)entity
+    relationship:(NSString*)relationship
+           error:(NSError **)error;
+/**
+ user connect asynchronously
+ @param entity entity
+ @param relationship relationship
+ @param successBlock successBlock
+ @param failureBlock failureBlock
+ */
+- (BaasioRequest*)connectInBackground:(BaasioEntity *)entity
+                         relationship:(NSString*)relationship
+                         successBlock:(void (^)(void))successBlock
+                         failureBlock:(void (^)(NSError *error))failureBlock;
+/**
+ user disconnect
+ @param entity entity
+ @param relationship relationship
+ @param error error
+ */
+- (void) disconnect:(BaasioEntity *)entity
+       relationship:(NSString*)relationship
+              error:(NSError **)error;
+
+/**
+ user disconnect asynchronously
+ @param entity entity
+ @param relationship relationship
+ @param successBlock successBlock
+ @param failureBlock failureBlock
+ */
+- (BaasioRequest*)disconnectInBackground:(BaasioEntity *)entity
+                            relationship:(NSString*)relationship
+                            successBlock:(void (^)(void))successBlock
+                            failureBlock:(void (^)(NSError *error))failureBlock;
+
+/**
+ Returns the value associated with a given key.
+ @param key key
+ */
+- (NSString *)objectForKey:(NSString *)key;
+/**
+ Adds a given key-value pair to the dictionary.
+ @param value value
+ @param key key
+ */
+- (void)setObject:(id)value forKey:(NSString *)key;
+
+
+/**
+ Returns a string that represents the contents of the dictionary, formatted as a property list.
+ */
+- (NSString *)description;
+
+/**
+ Entity dictionary
+ */
+- (NSDictionary *)dictionary;
 @end

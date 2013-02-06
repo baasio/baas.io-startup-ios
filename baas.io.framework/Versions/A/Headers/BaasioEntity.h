@@ -20,25 +20,25 @@
 @property(readonly, strong, getter = type) NSString *type;
 
 /**
- setEntity
- @param entity entity
+ Entity set
+ @param entity Entity
  */
--(void)setEntity:(NSDictionary *)entity;
+-(void)set:(NSDictionary *)entity;
 
 /**
- entitytWithName
- @param entityName entityName
+ create entity
+ @param entityName Entity name
  */
 + (BaasioEntity *)entitytWithName:(NSString *)entityName;
 
- /**
- save
+/**
+ Entity save
  @param error error
 */
 - (BaasioEntity *)save:(NSError **)error;
 
 /**
- save asynchronously
+ Entity save asynchronously
  @param successBlock successBlock
  @param failureBlock failureBlock
  */
@@ -46,13 +46,13 @@
             failureBlock:(void (^)(NSError *error))failureBlock;
 
 /**
- update
+ Entity update
  @param error error
  */
 - (BaasioEntity *)update:(NSError **)error;
 
 /**
- update asynchronously
+ Entity update asynchronously
  @param successBlock successBlock
  @param failureBlock failureBlock
  */
@@ -60,13 +60,13 @@
               failureBlock:(void (^)(NSError *error))failureBlock;
 
 /**
- delete
+ Entity delete
  @param error error
  */
 - (void)delete:(NSError **)error;
 
 /**
- delete asynchronously
+ Entity delete asynchronously
  @param successBlock successBlock
  @param failureBlock failureBlock
  */
@@ -76,18 +76,18 @@
 
 #pragma mark - relation
 /**
- connect
+ Entity connect
  @param entity entity
- @param relationship relationship
+ @param relationship relationship 이름
  @param error error
  */
 - (void) connect:(BaasioEntity *)entity
     relationship:(NSString*)relationship
            error:(NSError **)error;
 /**
- connect asynchronously
+ Entity connect asynchronously
  @param entity entity
- @param relationship relationship
+ @param relationship relationship 이름
  @param successBlock successBlock
  @param failureBlock failureBlock
  */
@@ -96,9 +96,9 @@
                          successBlock:(void (^)(void))successBlock
                          failureBlock:(void (^)(NSError *error))failureBlock;
 /**
- disconnect
+ Entity disconnect
  @param entity entity
- @param relationship relationship
+ @param relationship relationship 이름
  @param error error
  */
 - (void) disconnect:(BaasioEntity *)entity
@@ -106,9 +106,9 @@
            error:(NSError **)error;
 
 /**
- disconnect asynchronously
+ Entity disconnect asynchronously
  @param entity entity
- @param relationship relationship
+ @param relationship relationship 이름
  @param successBlock successBlock
  @param failureBlock failureBlock
  */
@@ -119,12 +119,13 @@
 
 #pragma mark - Data
 /**
- objectForKey
+ Returns the value associated with a given key.
+ 
  @param key key
  */
 - (NSString *)objectForKey:(NSString *)key;
 /**
- setObject
+ Adds a given key-value pair to the dictionary.
  @param value value
  @param key key
  */
@@ -132,36 +133,36 @@
 
 #pragma mark - Entity
 /**
- getEntity
- @param entityName entityName
+ Entity get
+ @param entityName Entity name
  @param uuid uuid
  @param error error
  */
-+ (BaasioEntity *)getEntity:(NSString*)entityName
-                       uuid:(NSString *)uuid
-                      error:(NSError **)error;
++ (BaasioEntity *)get:(NSString *)entityName
+                 uuid:(NSString *)uuid
+                error:(NSError **)error;
 /**
- getEntity asynchronously
- @param entityName entityName
+ Entity get asynchronously
+ @param entityName Entity name
  @param uuid uuid
  @param successBlock successBlock
  @param failureBlock failureBlock
  */
-+ (BaasioRequest*)getEntityInBackground:(NSString*)entityName
-                         uuid:(NSString *)uuid
-                 successBlock:(void (^)(BaasioEntity *entity))successBlock
-                 failureBlock:(void (^)(NSError *error))failureBlock;
++ (BaasioRequest*)getInBackground:(NSString *)entityName
+                             uuid:(NSString *)uuid
+                     successBlock:(void (^)(BaasioEntity *entity))successBlock
+                     failureBlock:(void (^)(NSError *error))failureBlock;
 
 #pragma mark - super
 /**
- description
+ Returns a string that represents the contents of the dictionary, formatted as a property list.
  */
 - (NSString *)description;
 
 
 #pragma mark - etc
 /**
- dictionary
+ Entity dictionary
  */
 - (NSDictionary *)dictionary;
 @end

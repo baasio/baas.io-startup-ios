@@ -22,15 +22,6 @@
 - (BaasioRequest*)getHelpsInBackground:(void (^)(NSArray *array))successBlock
                            failureBlock:(void (^)(NSError *error))failureBlock;
 
-/**
- asynchronously 도움말 검색
- @param keyword keyword
- @param successBlock successBlock
- @param failureBlock failureBlock
-*/
-- (BaasioRequest*)searchHelpsInBackground:(NSString *)keyword
-                             successBlock:(void (^)(NSArray *array))successBlock
-                             failureBlock:(void (^)(NSError *error))failureBlock;
 
 /**
  asynchronously 도움말 상세보기
@@ -43,12 +34,25 @@
                                failureBlock:(void (^)(NSError *error))failureBlock;
 
 /**
- asynchronously 문의 하기
- @param param param
+ asynchronously 도움말 검색
+ @param keyword 검색어
  @param successBlock successBlock
  @param failureBlock failureBlock
 */
-- (BaasioRequest*)sendQuestionInBackground:(NSDictionary *)param
+- (BaasioRequest*)searchHelpsInBackground:(NSString *)keyword
+                             successBlock:(void (^)(NSArray *array))successBlock
+                             failureBlock:(void (^)(NSError *error))failureBlock;
+
+/**
+ asynchronously 문의 하기
+ @param email email
+ @param content 문의내용
+ @param successBlock successBlock
+ @param failureBlock failureBlock
+*/
+
+- (BaasioRequest*)sendQuestionInBackground:(NSString *)email
+                                   content:(NSString *)content
                               successBlock:(void (^)(void))successBlock
                               failureBlock:(void (^)(NSError *error))failureBlock;
 @end
