@@ -16,6 +16,7 @@
 {
     //Insert you 'baas.io ID'
     [Baasio setApplicationInfo:@{baas.io ID} applicationName:@"sandbox"];
+    [[Baasio sharedInstance]isDebugMode:YES];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
